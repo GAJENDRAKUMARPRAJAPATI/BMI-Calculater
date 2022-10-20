@@ -1,0 +1,112 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="../node_modules/bootstrap/dist/css/bootstrap.css">
+    <link rel="stylesheet" href="../node_modules/bootstrap-icons/font/bootstrap-icons.css">
+    <title>BMI Calculator male  female</title>
+    <script>
+       /* function bodyload(){
+            document.getElementById("status").style.marginLeft = "520px";
+        }
+        */
+        function CalculateBmi(){
+            var msg = document.getElementById("msg");
+            var male = document.getElementById("optMale");
+            var female = document.getElementById("optFemale");
+            var age = document.getElementById("txtAge").value;
+            var height = parseInt(document.getElementById("txtHeight").value);
+            var weight = parseInt(document.getElementById("txtWeight").value);
+            //add bim calculator code
+            var bmi = (weight/Math.pow((height/100),2)).toFixed(1);
+            var slider = document.getElementById("slider");
+             if(weight <=53){
+                slider.style.marginLeft = "270px";
+                document.getElementById("Category").outerHTML = "<h2 style='color:blue'>You  are under weight</h2>";  
+             } else if (weight>=53 && 85){
+                slider.style.marginLeft = "400px";
+                document.getElementById("Category").outerHTML = "<h2 style='color:green'>Your's weight are Normal  </h2>"; 
+             } else if (weight>=86&& 90){
+                slider.style.marginLeft = "700pxpx";
+                document.getElementById("Category").outerHTML = "<h2 style='color:yellow'>Your's weight are overweight </h2>"; 
+             } else if (weight>=91 && 120){
+                slider.style.marginLeft = "950px";
+                document.getElementById("Category").outerHTML = "<h2 style='color:red'>Your's weight are heighly overwieighted </h2>"; 
+             }
+              document.getElementById("result").innerHTML =  `BMI is:${bmi}`
+
+           
+            if(male.checked) {
+                msg.innerHTML = "Your Gender : " + male.value;
+              //  BMI = mass (kg). height2 (m);
+              var bmi = (weight/Math.pow((height/100),2)).toFixed(1)
+            }
+            if(female.checked) {
+                msg.innerHTML = "Your Gender :" + female.value;
+                //BMI Formula for Female
+                var bmi = (weight/Math.pow((height/100),2)).toFixed(1)
+            }
+           
+        }
+    </script>
+</head>
+<body nload="bodyload()" class="container-fluid">
+    <div class="border border-3 border-primary reduce mt-3 p-3">
+        <h2 class="text-center" style=" background-color: aqua; color:green;">BMI CALCULATOR</h2>
+        <div class="mt-2">
+            <fieldset>
+                <legend>Select Gender</legend>
+                <input type="radio" class="form-checked-input ck
+                heck" name="gender" id="optMale" value="Male"> Male
+                <input type="radio" class="form-check-input" name="gender" id="optFemale" value="Female"> Female
+            </fieldset>
+        </div>
+        <div class="mt-3">
+            Age:
+            <input type="text" id="txtAge" placeholder="Enter Your Age">years
+        </div>
+        <div class="d-flex">
+            <div class="mt-3 p-3">
+                Height:
+                <input type="text" class="form-control" id="txtHeight" placeholder="Enter Your Height:'cm'" >cm
+            </div>
+            <div class="mt-3 p-3">
+                Weight:
+               <input type="text" class="form-control" id="txtWeight" placeholder="Enter Your Weight:'KG'" >KG
+            </div>
+       </div>
+        <div class="progress mt-3">
+            <div id="underWeight" class="progress-bar bg-primary text-white" style="width:300px">
+                Below 53 KG - Under Weight
+            </div>
+            <div id="normal" class="progress-bar bg-success text-white" style="width:350px">
+                54 to 85 KG - Normal
+            </div>
+            <div id="overWeight" class="progress-bar bg-warning text-white" style="width:350px">
+                 86 to 90 KG - Over Weight
+            </div>
+            <div id="overWeight" class="progress-bar bg-danger text-white" style="width:400px">
+                91 to 120KG - highly over Weight
+           </div>
+        </div>
+        <div id="slider">
+            <span class="bi bi-caret-down-fill"></span>
+            <br>
+            You
+            <div class="text-center">
+                <h1 id="result">Your weight:</h1>
+                <h1>
+                    Categories:
+                    <p id="Category"></p> 
+                </h1>
+            </div>
+        </div>
+        <div class="mt-3">
+            <button onclick="CalculateBmi()" id="txtBtn" class="btn btn-primary">Calculate BMI</button>
+        </div>
+        <h1 id="msg"></h1>
+    </div>
+</body>
+</html>
